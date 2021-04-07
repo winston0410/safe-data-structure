@@ -10,7 +10,7 @@ describe('instance of Stack', function(){
     expect(stack.head).toBeDefined()
   })
 
-  it('should expoes a length property', function (){
+  it('should expose a length property', function (){
     expect(stack.length).toBeDefined()
   })
 
@@ -27,23 +27,23 @@ describe('instance of Stack', function(){
   })
 
   it('should have a peek() method', function (){
-
+    expect(typeof stack.peek).toBe('function')
   })
 
   it('should have a size() method', function (){
-
+    expect(typeof stack.size).toBe('function')
   })
 
   it('should have a map() method', function (){
-
+    expect(typeof stack.map).toBe('function')
   })
 
   it('should have a clone() method', function (){
-
+    expect(typeof stack.clone).toBe('function')
   })
 
   it('should have a toArray() method', function (){
-
+    expect(typeof stack.toArray).toBe('function')
   })
 })
 
@@ -64,23 +64,32 @@ describe('when push() is called', function(){
 
 describe('when push() is called', function (){
   describe('when multiple arguments are provided', function (){
-    it('should push them all into the stack', function (){
 
+    const stack = new Stack()
+    stack.push('hello',"good","bad","bye")
+
+    it('should push them all into the stack', function (){
+      expect(stack.length).toBe(4)
     })
 
     it('should set the last argument of push() as the head', function (){
-
+      expect(stack.head).toBe("bye")
     })
   })
 })
 
 describe('when pop() is called', function(){
-  it('should remove the last element', function (){
 
+  const stack = new Stack()
+  stack.push('hello',"good","bad","bye")
+  // stack.pop()
+
+  it('should remove the last element', function (){
+    expect(stack.pop).toBe("bye")
   })
 
   it('should set the head to the second last element', function (){
-
+    expect(stack.head).toBe("bad")
   })
 })
 
@@ -95,13 +104,16 @@ describe('when clear() is called', function (){
 
 describe('when clone() is called', function (){
   it('should create a new instance of Stack', function (){
-
+    const stack = new Stack('hello', 'world', 'hi', 'bye')
+    expect(stack.clone()).toBeInstanceOf(Stack)
   })
 })
 
 describe('when map() is called', function (){
   it('should transform all elements in the stack based on callback function', function (){
-
+    const stack = new Stack('hello', 'world', 'hi', 'bye')
+    // expect(stack.map()).toEqual(expect.arrayContaining(['hello', 'world', 'hi', 'bye']))
+    expect(stack.map()).toStrictEqual(['hello', 'world', 'hi', 'bye'])
   })
 })
 
